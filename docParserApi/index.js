@@ -1,12 +1,16 @@
 const docparser = require("docparser-node");
-var fs = require('fs');
-var client = new docparser.Client();
+const ObjectsToCsv = require("objects-to-csv");
 
+
+var fs = require('fs');
+var client = new docparser.Client(KEY);
+
+// default impot file
 const myFile = 'test.pdf'
 
 // writes results to JSON
-var writeResult = (myResult) => {
-  fs.writeFile("./results.json", JSON.stringify(myResult, null, 4), (err) => {
+var writeResultJSON = (myResult) => {
+  fs.writeFile("./test.json", JSON.stringify(myResult, null, 4), (err) => {
     if (err) {
         console.error(err);
         return;
@@ -14,6 +18,16 @@ var writeResult = (myResult) => {
     console.log("File has been created");
   });
 }
+
+var writeResultCSV = (async(result) =>{
+  let csv = new ObjectsToCsv(result);
+ 
+  // Save to file:
+  await csv.toDisk('./test.csv');
+ 
+  // Return the CSV file as string:
+  console.log(await csv.toString());
+})
 
 // test Auth
 client
@@ -45,8 +59,7 @@ var returnResult = (id_sequence) => {
     client
     .getResultsByParser(result[id_sequence].id, { format: "object" })
     .then(function(result) {
-      console.log(result);
-      writeResult(result);
+      writeResultCSV(result);
     })
     .catch(function(err) {
       console.log(err);
@@ -80,3 +93,5 @@ var uploadDoc = (id_sequence) => {
 var main = () => {
   returnResult(0);
 }
+
+main();

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "docparser-node": "^1.2.2"
+    "docparser-node": "^1.2.2",
+    "objects-to-csv": "^1.2.1"
   }
 }
