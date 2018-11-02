@@ -1,0 +1,15 @@
+{
+  "name": "docparser-auto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "docparser-node": "^1.2.2",
+    "objects-to-csv": "^1.2.1"
+  }
+}
