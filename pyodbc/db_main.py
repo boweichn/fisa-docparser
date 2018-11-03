@@ -5,9 +5,6 @@ import pyodbc
 
 def main():
 
-    print("\n")
-    print("Returning input update data...")
-    print(json_to_dict())
     write_to_db(json_to_dict())
     
 main()

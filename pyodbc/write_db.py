@@ -17,9 +17,14 @@ def write_to_db(my_data):
   for rows in my_data:
     for key, value in rows.items():
       for fields, data in value.items():
-          mySQL = "UPDATE DBMAIN SET %s = '%s' WHERE SCHOOL_NUM = %s;"%(fields, data, key)
+        try:
+          my_data = int(data)
+          mySQL = "UPDATE DBMAIN SET %s = %s WHERE SCHOOL_NUM = '%s';"%(fields, my_data, key)
           print(mySQL)
-          # cursor.execute("""UPDATE DBMAIN SET {} = ? WHERE SCHOOL_NUM = ?;""".format(fields), (data, key))
           cursor.execute(mySQL)
           conn.commit()
-  
+        except:
+          altSQL = "UPDATE DBMAIN SET %s = '%s' WHERE SCHOOL_NUM = '%s';"%(fields, data, key)
+          print(altSQL)
+          cursor.execute(altSQL)
+          conn.commit()
