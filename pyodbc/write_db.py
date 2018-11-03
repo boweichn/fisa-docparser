@@ -1,23 +1,25 @@
 import pyodbc
 import os
-from read_db import return_db_object
-from csv_obj import read_csv
+from read_docp import json_to_dict
 
 def write_to_db(my_data):
-  db_file = 'test.accdb'
+
+  # Input File
+  db_file = 'schools.accdb'
+
+  # Finding abspath for Input File
   file_path = os.path.abspath(db_file)
 
+  # Engaging Access Drivers for fetch connecton
   conn = pyodbc.connect(r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=%s'%file_path)
   cursor = conn.cursor()
 
-  my_csv = my_data
-
-  for rows in my_csv:
-    if (rows[1] != ''):
-      cursor.execute('''
-                     UPDATE Table1
-                     SET Key = {}
-                     WHERE ID = {}
-                   
-                    '''.format(rows[1], rows[0]))
-      conn.commit()
+  for rows in my_data:
+    for key, value in rows.items():
+      for fields, data in value.items():
+          mySQL = "UPDATE DBMAIN SET %s = '%s' WHERE SCHOOL_NUM = %s;"%(fields, data, key)
+          print(mySQL)
+          # cursor.execute("""UPDATE DBMAIN SET {} = ? WHERE SCHOOL_NUM = ?;""".format(fields), (data, key))
+          cursor.execute(mySQL)
+          conn.commit()
+  

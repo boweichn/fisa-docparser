@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "docparser-node": "^1.2.2",
+    "jsonexport": "^2.3.0",
     "objects-to-csv": "^1.2.1"
   }
 }

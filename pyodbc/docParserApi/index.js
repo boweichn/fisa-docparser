@@ -3,7 +3,7 @@ const ObjectsToCsv = require("objects-to-csv");
 
 
 var fs = require('fs');
-var client = new docparser.Client(KEY);
+var client = new docparser.Client("832da014350ae9eddd8bec41a2ccc141f7da93b1");
 
 // default impot file
 const myFile = 'test.pdf'
@@ -59,7 +59,16 @@ var returnResult = (id_sequence) => {
     client
     .getResultsByParser(result[id_sequence].id, { format: "object" })
     .then(function(result) {
-      writeResultCSV(result);
+      // (async() =>{
+      //   let csv = new ObjectsToCsv(result);
+       
+      //   // Save to file:
+      //   await csv.toDisk('./test.csv');
+       
+      //   // Return the CSV file as string:
+      //   console.log(await csv.toString());
+      // })();
+      writeResultJSON(result)
     })
     .catch(function(err) {
       console.log(err);
