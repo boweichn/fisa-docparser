@@ -32,7 +32,7 @@ def email_pdfs():
             if (school_name == row['SCHOOL']):
                 # Use this email address when testing is done
                 # email_addr = row['Email']
-                to_address = 'rjanzen20@my.bcit.ca'
+                to_address = 'robertjanzenbc@gmail.com'
                 msg['To'] = to_address
                 break
 
@@ -52,9 +52,9 @@ def email_pdfs():
             server.starttls()
             server.login(from_address, EMAIL_PASS)
             text = msg.as_string()
-            server.sendmail(from_address, to_address)
-            serer.quit()
-        except:
-            print('Unable to send email!')
+            server.sendmail(from_address, to_address, text)
+            server.quit()
+        except Exception as e:
+            print(e)
 
 email_pdfs()
