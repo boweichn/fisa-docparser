@@ -2,12 +2,15 @@ from os import path
 from glob import glob
 from read_db import retrive_dict
 from pprint import pprint
-from passwords.py import *
+from passwords import *
 
 # Multi-purpose Internet Mail Extension
 import smtplib
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 # Return list of all pdf files in folder
 def find_pdf(dr, ext):
@@ -29,7 +32,8 @@ def email_pdfs():
             if (school_name == row['SCHOOL']):
                 # Use this email address when testing is done
                 # email_addr = row['Email']
-                msg['To'] = 'rjanzen20@my.bcit.ca'
+                to_address = 'rjanzen20@my.bcit.ca'
+                msg['To'] = to_address
                 break
 
         # Compose the rest of the email and attach the correct pdf
@@ -42,9 +46,15 @@ def email_pdfs():
         msg.attach(part)
 
         # Send email
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(from_address, EMAIL_PASS)
-
+        try:
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            # server.ehlo()
+            server.starttls()
+            server.login(from_address, EMAIL_PASS)
+            text = msg.as_string()
+            server.sendmail(from_address, to_address)
+            serer.quit()
+        except:
+            print('Unable to send email!')
 
 email_pdfs()
