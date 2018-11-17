@@ -15,8 +15,6 @@ def json_to_dict():
             i["school_num"]:
                 {
                     "school".upper(): i["school"],
-                    "Active": i["active"],
-                    "93_94".upper(): i["93_94"],
                     "address".upper(): i["address"],
                     "saddress".upper(): i["saddress"],
                     "founded".upper(): i["founded"],
