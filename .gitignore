@@ -2,3 +2,4 @@ config/
 /node_modules/
 /pyodbc/PDFs
 /pyodbc/DEPRECATED
+passwords.py
