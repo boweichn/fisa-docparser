@@ -9,7 +9,7 @@ def main():
 
     print('......\n')
     print('......\n')
-    
+
     write_to_db(json_to_dict())
     
 main()

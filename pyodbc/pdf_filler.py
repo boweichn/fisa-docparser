@@ -5,10 +5,12 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 from PyPDF2.generic import BooleanObject, NameObject, IndirectObject
 import re
 
+from colorama import init
+from termcolor import colored
+
+init()
 
 my_file = './PDFs/blank_PDFs/test_me.pdf'
-my_file2 = './PDFs/blank_PDFs/School19-Fact Sheet 2001-02.pdf'
-output_file = './PDFs/prepared_fact_sheets/tested_me.pdf'
 
 my_dir = './PDFs/blank_PDFs'
 
@@ -23,6 +25,7 @@ def field_names_dict(field_names):
     field_name_index = {}
 
     for keys in field_names.keys():
+        if ('NAME_' in keys or keys == 'NAME'): field_name_index[keys]='SD'  
         if 'NAME OF SCHOOL' in keys: field_name_index[keys]='SCHOOL'
         if 'YEAR FOUNDED' in keys: field_name_index[keys]='FOUNDED'
         if 'NAME OF AUTHORITY' in keys: field_name_index[keys]='AUTHORITY'
@@ -30,8 +33,11 @@ def field_names_dict(field_names):
         if 'MAILING ADDRESS' in keys: field_name_index[keys]='ADDRESS'  
         if 'SCHOOL FAX' in keys: field_name_index[keys]='FAX'  
         if 'WEBSITE' in keys: field_name_index[keys]='Website'  
-        if 'CITY  POSTAL CODE' in keys: field_name_index[keys]='CITY'  
-        if 'PRINCIPAL  DEGREE' in keys: field_name_index[keys]='DEGREE'  
+        if 'CITY' in keys: field_name_index[keys]='CITY'  
+        if 'POSTAL' in keys: field_name_index[keys]='POSTAL'  
+        if 'PRINCIPAL FIRST NAME' in keys: field_name_index[keys]='FIRST'
+        if 'PRINCIPAL LAST NAME' in keys: field_name_index[keys]='LAST'
+        if 'DEGREE' in keys: field_name_index[keys]='DEGREE'
         if 'EMAIL' in keys: field_name_index[keys]='Email'  
         if 'a GRADES OFFERED' in keys: field_name_index[keys]='GRADES'  
         if 'Grade 8' in keys: field_name_index[keys]='8'  
@@ -49,8 +55,7 @@ def field_names_dict(field_names):
         if 'a SCHOOL IS MEMBER OF FISA BC' in keys: field_name_index[keys]='FISA'  
         if 'b SCHOOL IS MEMBER OF PROVINCIAL ASSOCIATION' in keys: field_name_index[keys]='ASSOC'  
         if 'c SCHOOL IS MEMBER OF NATIONALINTERNATIONAL ASSOCIATIONS' in keys: field_name_index[keys]='ASSOC2'  
-        if 'i PUBLIC SCHOOL DISTRICT' in keys: field_name_index[keys]='SDNUM'  
-        if ('NAME_' in keys or keys == 'NAME'): field_name_index[keys]='SD'  
+        if 'i PUBLIC SCHOOL DISTRICT' in keys: field_name_index[keys]='SDNUM'
         if 'ii PROVINCIAL ELECTORAL DISTRICT' in keys: field_name_index[keys]='ELECTORAL'  
         if 'if different from above' in keys: field_name_index[keys]='SADDRESS'  
     return field_name_index
@@ -64,7 +69,8 @@ def school_num_finder(input_file):
     my_file, retrive_dict()
     # extracting text from page 
     my_page_object = pageObj.extractText()
-    school_num = my_page_object.split('\n')[-2]
+    school_num = my_page_object.split('\n')[-5]
+    # pprint(my_page_object.split('\n')) (use this to find the index of school number)
 
     # closing the pdf file object 
     pdfFileObj.close() 
@@ -111,6 +117,8 @@ def write_to_pdf(input_file, data_dict):
     for item in data:
         if school_num == item['SCHOOL_NUM']:
             output_file_name += '{}.pdf'.format(item["SCHOOL"])
+            print('{} is being filled. It is stored in the folder {} within {} folder. \n...'.format(colored(item["SCHOOL"]+'.pdf', 'green'), \
+            colored('prepared_fact_sheets', 'green'), colored('PDFs', 'green')))
             for key in item.keys():
                 for field in field_names.keys():
                     if key == field_names[field]:
@@ -130,5 +138,4 @@ def pdf_filler(input_list):
     for files in input_list:
         write_to_pdf("./PDFs/blank_PDFs/{}".format(files), retrive_dict())
     
-if __name__ == "__main__":
-    pdf_filler(prep_input(my_dir))
+pdf_filler(prep_input(my_dir))
