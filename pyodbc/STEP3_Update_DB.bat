@@ -15,5 +15,5 @@ ECHO.
 ECHO ******************************************************
 
 ECHO.
-ECHO Queries have finised. Database is updated.
+ECHO Queries have finished. Database is updated.
 PAUSE

@@ -1,4 +1,4 @@
-from os import path
+from os import path, rename
 from glob import glob
 from read_db import retrive_dict
 from pprint import pprint
@@ -35,12 +35,22 @@ def email_pdfs():
         # Find school name from pdf file name
         school_name = f.split("\\")[1].split(".")[0]
         for row in db:
+
+            # Rename email_addr to: to_address for production
+            email_addr = 'NA'
             if (school_name == row['SCHOOL']):
-                # Use this email address when testing is done
-                # email_addr = row['Email']
-                to_address = 'robertjanzenbc@gmail.com'
+                try:
+                    email_addr = row['Email']
+                except:
+                    print('Email address not found for: '+school_name)
+
+                to_address = 'robertjanzenbc@gmail.com' # Remove this line for production
                 msg['To'] = to_address
                 break
+
+        # Rename email_addr to: to_address for production
+        if (email_addr == 'NA'):
+            continue
 
         # Compose the rest of the email and attach the correct pdf
         # pdf names will be exactly the same as the school names in the database
@@ -64,6 +74,10 @@ def email_pdfs():
             text = msg.as_string()
             server.sendmail(from_address, to_address, text)
             server.quit()
+
+            # Move pdf to completed folder
+            attachment.close()
+            rename(f, ".\\emailed_fact_sheets\\"+f.split('\\')[1])
         except Exception as e:
             print(e)
 
