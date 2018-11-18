@@ -89,7 +89,6 @@ def set_need_appearances_writer(writer):
 def write_to_pdf(input_file, data_dict):
 
     school_num = school_num_finder(input_file)
-    pprint(school_num)
 
     output_file_name = "./PDFs/prepared_fact_sheets/"
 
