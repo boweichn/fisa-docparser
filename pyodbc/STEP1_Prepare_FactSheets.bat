@@ -7,8 +7,8 @@ ECHO Filling Empty Batch PDFs With Data...
 ECHO.
 ECHO ******************************************************
 
-"C:\Program Files (x86)\Python37-32\python.exe" "pdf_filler.py"
-rem"C:\Users\StephenCheng\AppData\Local\Programs\Python\Python36-32\python.exe" "pdf_filler.py"
+rem"C:\Program Files (x86)\Python37-32\python.exe" "pdf_filler.py"
+"C:\Users\StephenCheng\AppData\Local\Programs\Python\Python36-32\python.exe" "pdf_filler.py"
 
 ECHO.
 ECHO ******************************************************
