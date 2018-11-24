@@ -23,15 +23,17 @@ def email_pdfs():
     # Retreive list of pdf filenames
     files = find_pdf('./prepared_fact_sheets','pdf')
 
-    # Setup email
-    msg = MIMEMultipart()
-    from_address = 'robertjanzenbc@gmail.com'
-    msg['From'] = from_address
-    msg['Subject'] = 'FISA BC Fact Sheet'
-    body = 'Please electronically fill out the attached form, and return to FISA BC.'
+
 
     # Loop through all pdfs in the prepared_fact_sheets folder
     for f in files:
+        # Setup email
+        msg = MIMEMultipart()
+        from_address = 'robertjanzenbc@gmail.com'
+        msg['From'] = from_address
+        msg['Subject'] = 'FISA BC Fact Sheet'
+        body = 'Please electronically fill out the attached form, and return to FISA BC.'
+
         # Find school name from pdf file name
         school_name = f.split("\\")[1].split(".")[0]
         for row in db:
@@ -44,7 +46,7 @@ def email_pdfs():
                 except:
                     print('Email address not found for: '+school_name)
 
-                to_address = 'robertjanzenbc@gmail.com' # Remove this line for production
+                to_address = 'randombitly@gmail.com' # Remove this line for production
                 msg['To'] = to_address
                 break
 
@@ -52,6 +54,7 @@ def email_pdfs():
         if (email_addr == 'NA'):
             continue
 
+        print('Sending Email to: '+school_name)
         # Compose the rest of the email and attach the correct pdf
         # pdf names will be exactly the same as the school names in the database
         msg.attach(MIMEText(body, 'plain'))

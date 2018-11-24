@@ -1,9 +1,9 @@
 SCHOOL_NAME,COLUMN_NAME,OLD_DATA,NEW_DATA
-TEST2,SCHOOL,testing2,TEST2
-TEST2,Email,testing2,TEST@@fisabc.ca
-TEST2,LAST,me2,hello2
-TEST2,FIRST,change2,hello
-TEST1,SCHOOL,testing,TEST1
-TEST1,Email,testing,TEST1@fisabc.ca
-TEST1,LAST,me,hello
-TEST1,FIRST,change,hello
+A'q'amnik Elementary School,SCHOOL,asdf,A'q'amnik Elementary School
+A'q'amnik Elementary School,ADDRESS,asfasfa,7470 Mission Road
+A'q'amnik Elementary School,Email,asdf,aqamnikschool@aqam.net
+A'q'amnik Elementary School,CITY,asdfasdfasdf,"Cranbrook, BC"
+A'q'amnik Elementary School,POSTAL,asdfasdfa,V1C 7E5
+A'q'amnik Elementary School,ASSOC,asdfas,None
+A'q'amnik Elementary School,LAST,assdfasdf,Derech
+A'q'amnik Elementary School,FIRST,assdfasdf,Michael

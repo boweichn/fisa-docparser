@@ -96,7 +96,7 @@ def write_to_pdf(input_file, data_dict):
 
     school_num = school_num_finder(input_file)
 
-    output_file_name = "./PDFs/prepared_fact_sheets/"
+    output_file_name = "./prepared_fact_sheets/"
 
     inputStream = open(input_file, "rb")
     pdf_reader = PdfFileReader(inputStream, strict=False)
@@ -117,8 +117,8 @@ def write_to_pdf(input_file, data_dict):
     for item in data:
         if school_num == item['SCHOOL_NUM']:
             output_file_name += '{}.pdf'.format(item["SCHOOL"])
-            print('{} is being filled. It is stored in the folder {} within {} folder. \n...'.format(colored(item["SCHOOL"]+'.pdf', 'green'), \
-            colored('prepared_fact_sheets', 'green'), colored('PDFs', 'green')))
+            print('{} is being filled. It is stored in the folder {} \n...'.format(colored(item["SCHOOL"]+'.pdf', 'green'), \
+            colored('prepared_fact_sheets', 'green')))
             for key in item.keys():
                 for field in field_names.keys():
                     if key == field_names[field]:

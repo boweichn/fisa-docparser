@@ -9,7 +9,6 @@ ECHO.
 ECHO ******************************************************
 
 "C:\Program Files (x86)\Python37-32\python.exe" "db_main.py"
-rem"C:\Users\StephenCheng\AppData\Local\Programs\Python\Python36-32\python.exe" "db_main.py"
 
 ECHO.
 ECHO ******************************************************

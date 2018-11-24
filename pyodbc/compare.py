@@ -22,7 +22,9 @@ def compareData():
     diffList = []
 
     for items in dataList:
-        dataDict[items[0]] = {'SCHOOL': items[1], 'Email': items[2], 'FIRST': items[3], 'LAST': items[4]}
+        dataDict[items[0]] = {'SCHOOL': items[1], 'Email': items[2], 'FIRST': items[3], \
+        'LAST': items[4], 'ADDRESS': items[5], 'CITY': items[6], 'POSTAL': items[7], \
+        'ASSOC': items[8], 'AUTHORITY': items[9]}
 
     for lines in parsedData:
         for key,val in lines.items():
