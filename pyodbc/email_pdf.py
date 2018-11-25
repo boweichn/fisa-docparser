@@ -23,16 +23,14 @@ def email_pdfs():
     # Retreive list of pdf filenames
     files = find_pdf('./prepared_fact_sheets','pdf')
 
-
-
     # Loop through all pdfs in the prepared_fact_sheets folder
     for f in files:
         # Setup email
         msg = MIMEMultipart()
-        from_address = 'robertjanzenbc@gmail.com'
+        from_address = 'info@fisabc.ca'
         msg['From'] = from_address
-        msg['Subject'] = 'FISA BC Fact Sheet'
-        body = 'Please electronically fill out the attached form, and return to FISA BC.'
+        msg['Subject'] = 'FISA BC Fact Sheet 2019'
+        body = 'Please complete (or correct where necessary) the attached information. Please return by before October 11, 2019 to FISA BC by email at info@fisabc.ca.'
 
         # Find school name from pdf file name
         school_name = f.split("\\")[1].split(".")[0]
