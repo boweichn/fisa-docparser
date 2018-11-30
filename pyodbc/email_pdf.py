@@ -30,26 +30,22 @@ def email_pdfs():
         from_address = 'info@fisabc.ca'
         msg['From'] = from_address
         msg['Subject'] = 'FISA BC Fact Sheet 2019'
-        body = 'Please complete (or correct where necessary) the attached information. Please return by before October 11, 2019 to FISA BC by email at info@fisabc.ca.'
+        body = 'Please complete (or correct where necessary) the attached information. Please return by before October 11, 2019 to FISA BC by email at info@fisabc.ca. We recommend using Adobe Acrobat Reader DC to fill out and save your form.'
 
         # Find school name from pdf file name
         school_name = f.split("\\")[1].split(".")[0]
         for row in db:
-
-            # Rename email_addr to: to_address for production
-            email_addr = 'NA'
+            to_address = 'NA'
             if (school_name == row['SCHOOL']):
                 try:
-                    email_addr = row['Email']
+                    to_address = row['Email']
                 except:
                     print('Email address not found for: '+school_name)
-
-                to_address = 'randombitly@gmail.com' # Remove this line for production
                 msg['To'] = to_address
                 break
 
         # Rename email_addr to: to_address for production
-        if (email_addr == 'NA'):
+        if (to_address == 'NA'):
             continue
 
         print('Sending Email to: '+school_name)

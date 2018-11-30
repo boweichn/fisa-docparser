@@ -2,6 +2,9 @@ mode con:cols=150 lines=50
 @ECHO OFF
 TITLE Email PDF Files To Schools
 
+ECHO Caution: By proceeding you will email every school in the Database!
+PAUSE
+
 ECHO Executing Production Batch...
 ECHO Emailing PDF Files...
 ECHO.
