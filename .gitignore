@@ -1,6 +1,3 @@
-/pyodbc/PDFs
-/pyodbc/prepared_fact_sheets
+/pyodbc/PDFs/*
+/pyodbc/prepared_fact_sheets/*
 /pyodbc/passwords.py
-/pyodbc/schools.accdb
-/pyodbc/schools_backup.accdb
-/pyodbc/schools_OLD.mdb
