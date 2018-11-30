@@ -9,7 +9,7 @@ for %%f in (*.*) do (
     timeout 3 > nul
     cd ..
     start "" "save_pdf.ahk"
-    timeout 7 > nul
+    timeout 10 > nul
     cd prepared_fact_sheets
 )
 
