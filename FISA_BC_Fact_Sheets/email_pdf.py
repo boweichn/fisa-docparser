@@ -20,6 +20,12 @@ def email_pdfs():
     # Create database object
     db = retrive_dict()
 
+    fl = open('email_body.txt', 'r')
+    email = fl.readLines()
+    email_subject = email[0]
+    body = email[1]
+
+    fl.close()
     # Retreive list of pdf filenames
     files = find_pdf('./prepared_fact_sheets','pdf')
 
@@ -27,10 +33,11 @@ def email_pdfs():
     for f in files:
         # Setup email
         msg = MIMEMultipart()
-        from_address = 'info@fisabc.ca'
+        from_address = 'fisabc@gmail.com'
         msg['From'] = from_address
-        msg['Subject'] = 'FISA BC Fact Sheet 2019'
-        body = 'Please complete (or correct where necessary) the attached information. Please return by before October 11, 2019 to FISA BC by email at info@fisabc.ca. We recommend using Adobe Acrobat Reader DC to fill out and save your form.'
+        msg['Subject'] = email_subject
+        
+        # body = 'Please complete (or correct where necessary) the attached information. Please return by before October 11, 2019 to FISA BC by email at info@fisabc.ca. We recommend using Adobe Acrobat Reader DC to fill out and save your form.'
 
         # Find school name from pdf file name
         school_name = f.split("\\")[1].split(".")[0]

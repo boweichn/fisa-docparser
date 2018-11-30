@@ -1,7 +1,8 @@
-﻿SendInput, ^s
-Sleep, 2000
+﻿Sleep, 500
+SendInput, ^s
+Sleep, 4000
 Send {Enter}
-Sleep, 3000
+Sleep, 2000
 Send {Enter}
 Sleep, 1500
 Send {Left}
