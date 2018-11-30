@@ -1,3 +1,3 @@
-/pyodbc/PDFs/*
-/pyodbc/prepared_fact_sheets/*
-/pyodbc/passwords.py
+/FISA_BC_Fact_Sheets/PDFs/
+/FISA_BC_Fact_Sheets/prepared_fact_sheets/
+/FISA_BC_Fact_Sheets/passwords.py
